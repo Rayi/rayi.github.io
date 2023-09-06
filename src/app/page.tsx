@@ -1,130 +1,162 @@
 'use client'
-import { IconCircleKey, IconMail, IconCreditCard, IconLockSquareRounded, IconTimelineEventText,IconApps, IconSettings } from '@tabler/icons-react';
+import {Card, CardHeader, CardBody, CardFooter, Image, Button, Link} from "@nextui-org/react";
+import { IconStarFilled, IconStarHalfFilled, IconStar, IconDog, IconCat,IconPaw, IconLink } from '@tabler/icons-react';
 
-import {Button} from '@nextui-org/button';
-import { Menu } from '@headlessui/react'
-
-export default function Home() {
+export default function App() {
+  const favs = [
+    {
+      name: 'MacBookPro M2 14',
+      type: '电脑设备',
+      thumb: 'https://timit.quanzi.io/macbook_pro.png',
+      recommendationRate: [1,1,1,1,1],
+      url: 'https://www.apple.com/macbook-pro-14-and-16/'
+    },
+    {
+      name: 'iPad Pro',
+      type: '数码',
+      thumb: 'https://timit.quanzi.io/ipad_pro.png',
+      recommendationRate: [1,1,1,1,0.5],
+      url: 'https://www.apple.com/ipad-pro/'
+    },
+    {
+      name: '罗技 Master 3S',
+      type: '电脑设备',
+      thumb: 'https://timit.quanzi.io/master3s.png',
+      recommendationRate: [1,1,1,1,1],
+      url: 'https://detail.tmall.com/item.htm?abbucket=17&id=674434245019&ns=1&skuId=5071670633780'
+    },
+    {
+      name: 'LG 4K 显示器',
+      type: '电脑设备',
+      thumb: 'https://timit.quanzi.io/lg_screen.png',
+      recommendationRate: [1,1,1,1,1]
+    },
+    {
+      name: '罗技 Keyboard MX',
+      type: '电脑设备',
+      thumb: 'https://timit.quanzi.io/mx_keyboard.png',
+      recommendationRate: [1,1,1,1,1],
+      url: 'https://detail.tmall.com/item.htm?id=605535942523&scene=taobao_shop&sku_properties=1627207:12604774045;211004089:10010'
+    },
+    {
+      name: 'ORICO 磁盘阵列',
+      type: '存储',
+      thumb: 'https://timit.quanzi.io/raid.png',
+      recommendationRate: [1,1,1,1,1]
+    },
+    {
+      name: 'Apple Watch',
+      type: '数码',
+      thumb: 'https://timit.quanzi.io/apple_watch.png',
+      recommendationRate: [1,1,1,1,1]
+    },
+    {
+      name: '硬糖小电拼',
+      type: '充电',
+      thumb: 'https://timit.quanzi.io/ytxdp.png',
+      recommendationRate: [1,1,1,1,1],
+      url: 'https://detail.tmall.com/item.htm?abbucket=17&id=726104922689&ns=1'
+    },
+    {
+      name: 'iPhone',
+      type: '数码设备',
+      thumb: 'https://timit.quanzi.io/iphone.png',
+      recommendationRate: [1,1,1,1,1]
+    },
+    {
+      name: '垃圾桶/绝版',
+      type: '生活',
+      thumb: 'https://timit.quanzi.io/garbage_can.png',
+      recommendationRate: [1,1,1,1,1]
+    },
+    {
+      name: '纸巾盒/绝版',
+      type: '生活',
+      thumb: 'https://timit.quanzi.io/zhijinhe.png',
+      recommendationRate: [1,1,1,1,1]
+    },
+    {
+      name: 'CleanMyMac X',
+      type: '软件',
+      thumb: 'https://timit.quanzi.io/cleanmymacx.png',
+      recommendationRate: [1,1,1,1,1],
+      url: 'https://macpaw.com/cleanmymac'
+    },
+    {
+      name: '1Password',
+      type: '软件',
+      thumb: 'https://timit.quanzi.io/1password.png',
+      recommendationRate: [1,1,1,1,1],
+      url: 'https://1password.com/'
+    },
+    {
+      name: 'Notion',
+      type: '软件',
+      thumb: 'https://timit.quanzi.io/notion.png',
+      recommendationRate: [1,1,1,1,1],
+      url: 'https://www.notion.so/'
+    },
+    {
+      name: 'Sketch',
+      type: '工作软件',
+      thumb: 'https://timit.quanzi.io/sketch.png',
+      recommendationRate: [1,1,1,1,1],
+      url: 'https://www.sketch.com/'
+    },
+    {
+      name: 'VS Code',
+      type: '工作软件',
+      thumb: 'https://timit.quanzi.io/vscode.png',
+      recommendationRate: [1,1,1,1,1],
+      url: 'https://code.visualstudio.com/'
+    },
+  ]
   return (
-    <div className='flex bg-zinc-900 absolute top-8 left-0 right-0 bottom-0 text-white overflow-y-auto page'>
-      <div className='flex-initial w-4/12 p-3 border-r border-neutral-950'>
-        <div className='flex flex-row pb-4 mb-2 border-b border-neutral-950'>
-          <div className='mr-2 rounded-full bg-gradient-to-bl w-8 h-8 from-lime-500'></div>
-          <div>
-            <h2 className='text-white text-sm font-bold'>Rayi</h2>
-            <p className='text-white text-xs text-slate-600'>Product Designer</p>
-          </div>
+    <div>
+      <h1 className="max-w-[900px] mx-auto text-2xl p-6">一些好物</h1>
+      <div className="max-w-[900px] mx-auto gap-4 grid grid-cols-12 grid-rows-2 p-6 pb-10">
+          { favs.map(item => {
+            return (
+              <Card className="col-span-12 sm:col-span-3">
+                <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
+                  <p className="my-2 text-tiny uppercase flex text-black/60 hidden">
+                    { item.recommendationRate.map(recommendValue => {
+                      return recommendValue === 1 ? <IconStarFilled size={12} /> : (recommendValue === 0.5 ? <IconStarHalfFilled size={12} /> : <IconStar size={12} />)
+                    })}
+                  </p>
+                  <small className="my-2 text-xs text-default-500 antialiased">{item.type}</small>
+                  <h4 className="text-sm">
+                    {item.url ? (
+                      <Link underline="hover" size="sm" href={item.url} isExternal color="foreground">
+                        {item.name}
+                      </Link>
+                    ) : (
+                      item.name
+                    )}</h4>
+                </CardHeader>
+                <CardBody className="overflow-visible py-2">
+                  {item.url ? (
+                    <Link href={item.url} isExternal>
+                      <Image
+                      alt={item.name}
+                      className="object-cover rounded-xl"
+                      src={item.thumb}
+                      width={260}
+                    />
+                    </Link>
+                  ) : (
+                    <Image
+                      alt={item.name}
+                      className="object-cover rounded-xl"
+                      src={item.thumb}
+                      width={260}
+                    />
+                  )}
+                </CardBody>
+              </Card>
+            )
+          })}
         </div>
-        <ul className='flex flex-col'>
-          <li className='flex flex-col'>
-            <a href="#" className='block transition-all ease-in-out duration-30 p-2 px-0 text-slate-500 text-xs font-semibold'>权限</a>
-            <ul className='flex flex-col text-sm'>
-              <li className='py-1 border-y border-transparent'>
-                <a href="#" className='block border-l border-transparent transition-all ease-in-out duration-300 p-1 pl-4 text-zinc-500  hover:text-zinc-200'><IconMail className="inline-block" size={16} /> 邮箱</a>
-              </li>
-              <li className='py-1 border-y border-transparent'>
-                <a href="#" className='block border-l border-current transition-all ease-in-out duration-300 p-1 pl-4 text-zinc-200 hover:text-slate-200'><IconLockSquareRounded className="inline-block" size={16} /> 密码和认证</a>
-              </li>
-              <li className='py-1 border-y border-transparent'>
-                <a href="#" className='block border-l border-transparent transition-all ease-in-out duration-300 p-1 pl-4 text-zinc-500  hover:text-zinc-200'><IconCreditCard className="inline-block" size={16} /> 付费计划</a>
-              </li>
-              <li className='py-1 border-y border-transparent'>
-                <a href="#" className='block border-l border-transparent transition-all ease-in-out duration-300 p-1 pl-4 text-zinc-500  hover:text-zinc-200'><IconCircleKey className="inline-block" size={16} /> SSH 和 GPT 密钥</a>
-              </li>
-            </ul>
-          </li>
-          <li className='flex flex-col'>
-            <a href="#" className='block transition-all ease-in-out duration-30 p-2 px-0 text-slate-500 text-xs font-semibold'>集成</a>
-            <ul className='flex flex-col  text-sm'>
-              <li className='py-1 border-y border-transparent'>
-                <a href="#" className='block border-l border-transparent transition-all ease-in-out duration-300 p-1 pl-4 text-zinc-500  hover:text-zinc-200'><IconApps className="inline-block" size={16} /> 应用</a>
-              </li>
-              <li className='py-1 border-y border-transparent'>
-                <a href="#" className='block border-l border-transparent transition-all ease-in-out duration-300 p-1 pl-4 text-zinc-500 hover:text-slate-200'><IconTimelineEventText className="inline-block" size={16} /> 计划提醒</a>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </div>
-      <div className='flex-auto p-4 px-6 overflow-y-auto'>
-        <div className="mb-10">
-          <h1 className="py-3 mb-4 text-white text-xl border-b border-b-zinc-800">修改密码</h1>
-          <div>
-            <div className="flex flex-col gap-y-1 mb-2">
-              <label className="py-1 text-white text-sm">旧密码</label>
-              <input className="px-2 py-1 border border-zinc-950 rounded bg-zinc-800" type="text" />
-            </div>
-            <div className="flex flex-col gap-y-1 mb-2">
-              <label className="py-1 text-white text-sm">新密码</label>
-              <input className="px-2 py-1 border border-zinc-950 rounded bg-zinc-800" type="text" />
-            </div>
-            <div className="flex flex-col gap-y-1 mb-2">
-              <label className="py-1 text-white text-sm">确认新密码</label>
-              <input className="px-2 py-1 border border-zinc-950 rounded bg-zinc-800" type="text" />
-            </div>
-            <p className="text-slate-400 text-xs">Make sure it's at least 15 characters OR at least 8 characters including a number and a lowercase letter. Learn more.</p>
-            <div className="flex flex-row gap-y-1 my-2">
-              <button className="inline-block transition ease-in duration-200 text-zinc-300 text-sm font-medium px-6 py-2 border border-zinc-950 rounded bg-blue-800 hover:bg-blue-700 shadow-md focus:outline-none focus:ring-1 focus:ring-offset-1 focus:ring-blue-500 focus:ring-offset-zinc-950">更新密码</button>
-            </div>
-          </div>
-        </div>
-
-        <div className="mb-10">
-          <h1 className="py-3 mb-4 text-white text-xl border-b border-b-zinc-800">邮箱</h1>
-          <div className='mb-4 border rounded border-zinc-700 divide-y divide-solid divide-zinc-700'>
-            <div className=''>
-              <div className='p-4'>
-                <h3 className='text-white font-bold text-base'>trststsd@fxsdsssd.com</h3>
-                <ul className='mt-2 list-disc list-inside'>
-                  <li className='text-slate-500 text-xs'>Visible in emails <IconCircleKey className="inline-block" size={16} /></li>
-                </ul>
-              </div>
-            </div>
-            <div className=''>
-              <div className='p-4'>
-                <h3 className='text-white font-bold text-base'>trststsd@fxsdsssd.com</h3>
-                <ul className='mt-2 list-disc list-inside'>
-                  <li className='text-slate-500 text-xs'>Visible in emails <IconCircleKey className="inline-block" size={16} /></li>
-                </ul>
-              </div>
-            </div>
-            <div className=''>
-              <div className='p-4'>
-                <h3 className='text-white font-bold text-base'>trststsd@fxsdsssd.com</h3>
-                <ul className='mt-2 list-disc list-inside'>
-                  <li className='text-slate-500 text-xs'>Visible in emails <IconCircleKey className="inline-block" size={16} /></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div>
-
-            <div className="flex flex-col gap-y-1 mb-2 pb-4 border-b border-b-zinc-800">
-              <label className="py-1 text-white text-sm font-bold">添加新的邮箱</label>
-              <div>
-                <input placeholder='输入邮箱' className="w-60 h-10 px-2 py-2 mr-2 text-sm border border-zinc-950 rounded bg-zinc-800" type="text" />
-                <button className="inline-block transition ease-in duration-200 text-zinc-300 text-sm font-medium px-6 py-2 border border-zinc-950 rounded bg-zinc-700 hover:bg-zinc-600 shadow-md focus:outline-none focus:ring-1 focus:ring-offset-1 focus:ring-blue-500 focus:ring-offset-zinc-950">添加</button>
-              </div>
-            </div>
-            <div className="flex flex-col gap-y-1 mb-2 pb-4">
-              <label className="py-1 text-white text-sm font-bold">添加新的邮箱</label>
-              <div>
-                <p className="text-slate-300 text-sm mb-2">Please choose the email you mostly use.</p>
-                <select placeholder='输入邮箱' className="w-60 h-10 px-2 py-2 mr-2 text-xs border border-zinc-950 rounded bg-zinc-800">
-                    <option value="1">xxxxx@gsdsd.com</option>
-                    <option value="2">选项2</option>
-                    <option value="3">选项3</option>
-                  </select>
-                <button className="inline-block transition ease-in duration-200 text-zinc-300 text-sm font-medium px-6 py-2 border border-zinc-950 rounded bg-blue-800 hover:bg-blue-700 shadow-md focus:outline-none focus:ring-1 focus:ring-offset-1 focus:ring-blue-500 focus:ring-offset-zinc-950">添加</button>
-              </div>
-            </div>
-
-            <div className="flex flex-row gap-y-1 my-2">
-              <button className="inline-block transition ease-in duration-200 text-zinc-300 text-sm font-medium px-6 py-2 border border-zinc-950 rounded bg-blue-800 hover:bg-blue-700 shadow-md focus:outline-none focus:ring-1 focus:ring-offset-1 focus:ring-blue-500 focus:ring-offset-zinc-950">更新密码</button>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
-  )
+  );
 }

@@ -107,7 +107,7 @@ export default function Page() {
           <Tab key="music" title="Music"/>
           <Tab key="videos" title="Videos"/>
         </Tabs>
-      <Card className="w-[200px] space-y-5 p-4" radius="2xl">
+      <Card className="w-[200px] space-y-5 p-4" radius="lg">
         <Skeleton isLoaded={isLoaded} className="rounded-lg">
           <div className="h-24 rounded-lg bg-secondary"></div>
         </Skeleton>
